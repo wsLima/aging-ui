@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +26,11 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ButtonModule,
+    SidebarModule,
+    TableModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

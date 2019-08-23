@@ -1,0 +1,43 @@
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 30px;
+}
+.main-content-search {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.main-datatable {
+  width: 100%;
+}
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #343a40;
+  color: white;
+}

@@ -1,1 +1,11 @@
-<p>sidebar works!</p>
+<p-sidebar class="sidebarnav" [(visible)]="visibleSidebar" [showCloseIcon]="false" [baseZIndex]="10000">
+    <h1>Navegação</h1>
+
+    <ul>
+        <li><a href="">Beneficiários</a></li>
+        <li><a href="">Pagamentos</a></li>
+        <li><a href="">Saques</a></li>
+    </ul>
+</p-sidebar>
+
+<button pButton type="button" class="ui-button-icon-primary" (click)="visibleSidebar = true" icon="pi pi-bars"></button>

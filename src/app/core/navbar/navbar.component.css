@@ -1,0 +1,19 @@
+.main-navbar {
+    width: 100%;
+    background-color: #F8F9FA;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+    padding: 15px;
+}
+
+.main-navbar p {
+    font-size: 1em;
+    margin-left: 10px;
+}
