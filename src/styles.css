@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
+body{
+  background-color: #FCFCF5;
+}
+
 * {
     margin: 0;
+    
 
     font-family: 'Open Sans', sans-serif;
     font-size: 100%;
@@ -15,8 +20,83 @@
 
 /* Sobreposição de estilos css do tema padrão */
 .ui-sidebar {
-    background-color: #242939 !important;
+    background-color: #899E3B !important;
     border: 0 !important;
     color: #fff;
     padding: 0 !important;
+}
+
+/* CSS PADRÃO DAS PAGINAS */
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 30px;
+}
+.main-content-search {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.main-datatable {
+  width: 100%;
+}
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+#customers td,
+#customers th {
+  border: 1px solid #ddd !important;
+  padding: 8px !important;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2 !important; 
+}
+
+#customers tr:hover {
+  background-color: #ddd !important;
+}
+
+#customers th {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  text-align: left !important;
+  background-color: #899E3B !important;
+  color: white !important;
+}
+
+.ui-button {
+  background: #899E3B !important;
+  border: #899E3B !important;
+
+}
+
+.ui-button :hover {
+  background: #6B7D2E !important;
+}
+.ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+  background-color: #899E3B !important;
+  color: #ffffff !important;
+  border: #899E3B !important;
+}
+.ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active ::before {
+  background-color: #899E3B !important;
+  color: #ffffff !important;
+  border: #899E3B !important;
+}
+.ui-dropdown-panel
+.ui-dropdown-items 
+.ui-dropdown-item.ui-state-highlight, 
+body .ui-dropdown-panel 
+.ui-dropdown-items 
+.ui-dropdown-item-group.ui-state-highlight{
+  background-color: #899E3B !important;
+  color: #ffffff !important;
+  border: #899E3B !important; 
 }

@@ -1,10 +1,10 @@
 <p-sidebar class="sidebarnav" [(visible)]="visibleSidebar" [showCloseIcon]="false" [baseZIndex]="10000">
-    <h1>Navegação</h1>
+    <h1>Menu</h1>
 
     <ul>
-        <li><a href="">Beneficiários</a></li>
-        <li><a href="">Pagamentos</a></li>
-        <li><a href="">Saques</a></li>
+        <li><a (click)="visibleSidebar = false" routerLink="beneficiarios">Beneficiários</a></li>
+        <li><a (click)="visibleSidebar = false" routerLink="pagamentos">Pagamentos</a></li>
+        <li><a (click)="visibleSidebar = false" routerLink="saques">Saques</a></li>
     </ul>
 </p-sidebar>
 

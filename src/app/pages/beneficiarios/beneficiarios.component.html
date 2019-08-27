@@ -1,0 +1,67 @@
+<div class="main-content">
+    <div class="main-content-search">
+        <!-- <div>
+            <button pButton type="button" icon="pi pi-download" iconPos="right" label="Exportar"></button>
+        </div> -->
+        <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="Pesquisar">
+            <button pButton type="button" icon="pi pi-search" class="ui-button-warn"></button>
+        </div>
+    </div>
+    <div class="main-datatable">
+
+        <p-table #dt id="customers" [columns]="cols" [value]="listBeneficiarios">
+            <ng-template pTemplate="caption">
+                <div class="ui-helper-clearfix" style="text-align: left;margin:4px 4px 0 0">
+                    <button  type="button" pButton icon="pi pi-download" iconPos="left" label="Exportar" (click)="dt.exportCSV()" ></button>
+                </div>
+
+                <div style="text-align: right">
+                    <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- <table id="customers">
+            <tr>
+                <th>Protocolo</th>
+                <th>Nome</th>
+                <th>Pagamentos</th>
+                <th>Saques</th>
+                <th>Saldo</th>
+                <th>Último Pagamento</th>
+                <th>Último Saque</th>
+                <th>Data Base</th>
+                <th>Meses</th>
+            </tr>
+
+            <tr *ngFor="let list of listBeneficiarios">
+                <td>{{ list.protocolo }}</td>
+                <td>{{ list.nome }}</td>
+                <td>{{ list.valorPagamento | currency: 'R$ ' }}</td>
+                <td>{{ list.valorSaque | currency: 'R$ ' }}</td>
+                <td>{{ list.saldo | currency: 'R$ ' }}</td>
+                <td>{{ list.dataPagamento | date: 'dd/MM/yyy' }}</td>
+                <td>{{ list.dataSaque | date: 'dd/MM/yyy' }}</td>
+                <td>{{ list.dataBase | date: 'dd/MM/yyy' }}</td>
+                <td>{{ list.meses }}</td>
+            </tr>
+        </table>
+
+        <p-paginator [rows]="10" [totalRecords]="20" [rowsPerPageOptions]="[10]"></p-paginator> -->
+    </div>
+
+</div>

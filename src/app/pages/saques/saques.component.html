@@ -1,0 +1,38 @@
+<div class="main-content">
+    <div class="main-content-search">
+        <div>
+            <button pButton type="button" icon="pi pi-download" iconPos="right"
+                label="Exportar"></button>
+        </div>
+        <div class="ui-inputgroup">
+            <input type="text" pInputText placeholder="Pesquisar">
+            <button pButton type="button" icon="pi pi-search" class="ui-button-warn"></button>
+        </div>
+    </div>
+    <div class="main-datatable">
+        <table id="customers">
+            <tr>
+                <th>Protocolo</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Pagamento</th>
+                <th>Data</th>
+                
+                
+            </tr>
+
+            <tr *ngFor="let saque of listSaques">
+                <td>{{saque.protocolo}}</td>
+                <td>{{saque.nome}}</td>
+                <td>{{saque.descricao}}</td>
+                <td>{{saque.valorSaque | currency:'R$ '}}</td> 
+                <td>{{saque.dataSaque  | date:'dd/MM/yyyy' }}</td>
+                       
+   
+            </tr>
+        </table>
+
+        <p-paginator [rows]="10" [totalRecords]="20" [rowsPerPageOptions]="[10]"></p-paginator>
+    </div>
+
+</div>

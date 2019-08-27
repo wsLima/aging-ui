@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  mode: 'prod',
+  domainAging: 'https://' //TODO TROCAR PARA O ENDEREÇO DE PRODUÇÃO!!!
+  
 };
+

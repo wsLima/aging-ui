@@ -2,7 +2,7 @@
     font-size: 1.4em;
     color: #fff;
     padding: 18px;
-    background-color: #353949;
+    background-color: #899E3B;
 }
 
 .sidebarnav ul {
@@ -22,12 +22,12 @@
     padding: 15px 0;
 }
 .sidebarnav ul li:hover {
-    background-color: #1F2433;
+    background-color: #6B7D2E;
     text-decoration: none;
     cursor: pointer;
 }
 .sidebarnav ul li a {
-    color: #989eb3;
+    color: #fff;
     padding: 0 30px;
 }
 .sidebarnav ul li a:hover {
