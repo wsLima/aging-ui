@@ -1,38 +1,48 @@
 <div class="main-content">
     <div class="main-content-search">
-        <div>
-            <button pButton type="button" icon="pi pi-download" iconPos="right"
-                label="Exportar"></button>
-        </div>
+        <!-- <div>
+            <button pButton type="button" icon="pi pi-download" iconPos="right" label="Exportar"></button>
+        </div> -->
         <div class="ui-inputgroup">
             <input type="text" pInputText placeholder="Pesquisar">
             <button pButton type="button" icon="pi pi-search" class="ui-button-warn"></button>
         </div>
     </div>
     <div class="main-datatable">
-        <table id="customers">
-            <tr>
-                <th>Protocolo</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Pagamento</th>
-                <th>Data</th>
-                
-                
-            </tr>
+        <p-table #dt id="customers" [columns]="cols" [value]="listSaques" [paginator]="true" [rows]="20"
+        [totalRecords]="totalRecords">
+            <ng-template pTemplate="caption">
+                <div class="ui-helper-clearfix" style="text-align: left;margin:4px 4px 0 0">
+                    <button type="button" pButton icon="pi pi-download" iconPos="left" label="Exportar"
+                        (click)="dt.exportCSV()"></button>
+                </div>
 
-            <tr *ngFor="let saque of listSaques">
-                <td>{{saque.protocolo}}</td>
-                <td>{{saque.nome}}</td>
-                <td>{{saque.descricao}}</td>
-                <td>{{saque.valorSaque | currency:'R$ '}}</td> 
-                <td>{{saque.dataSaque  | date:'dd/MM/yyyy' }}</td>
-                       
-   
-            </tr>
-        </table>
+                <div style="text-align: right">
+                    <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Pesquisar"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
 
-        <p-paginator [rows]="10" [totalRecords]="20" [rowsPerPageOptions]="[10]"></p-paginator>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                            ariaLabelDesc="Activate to sort in descending order"
+                            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        {{rowData[col.field]}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
     </div>
 
 </div>

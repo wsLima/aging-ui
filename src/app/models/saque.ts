@@ -1,9 +1,9 @@
 export class SaqueModel {
 
-    public protocolo: Number;
+    public protocolo: String;
     public nome: String;
-    public valorSaque: Number;
-    public dataSaque: Date;
+    public valorSaque: String;
+    public dataSaque: String;
     public descricao: String;
 
 }

@@ -3,6 +3,7 @@ import { NavbarComponent } from 'src/app/core/navbar/navbar.component';
 import { NavbarService } from 'src/app/providers/navbar.service';
 import { SaqueModel } from 'src/app/models/saque';
 import { SaqueService } from 'src/app/providers/saque.service';
+import { formatDate } from '@angular/common';
 
 // create by wsLima on 2019/08
 // contact: kennedy.wsLima@gmail.com
@@ -14,7 +15,9 @@ import { SaqueService } from 'src/app/providers/saque.service';
 })
 export class SaquesComponent implements OnInit {
 
-  public listSaques = new Array<SaqueModel>();
+  listSaques = new Array<SaqueModel>();
+  saque: SaqueModel;
+  cols: any[];
 
 
   constructor(
@@ -25,12 +28,38 @@ export class SaquesComponent implements OnInit {
   ngOnInit() {
     this.navbarService.setTitle('Saques'); //Adicina o titulo da pagina. 
 
+    this.cols = [
+      { field: 'protocolo', header: 'Protocolo' },
+      { field: 'nome', header: 'Nome' },
+      { field: 'valorSaque', header: 'Saques' },
+      { field: 'dataSaque', header: 'Último Saque' },
+      { field: 'descricao', header: 'Descrição' }
+
+    ];
+
     this.getListSaques();
   }
 
   private getListSaques() { // consulta de saques
+
+    var format = 'dd/MM/yyyy';
+
     this.saqueServise.getListSaques().then((data) => {
-      this.listSaques = data.content;
+
+      data.content.forEach(e => {
+        this.saque = new SaqueModel();
+        let dataSaque = e.dataSaque ? formatDate(e.dataSaque, format, 'en-US') : '';
+
+        this.saque.protocolo = e.protocolo;
+        this.saque.nome = e.nome;
+        this.saque.valorSaque = 'R$ ' + (e.valorSaque).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        this.saque.descricao = e.descricao;
+        this.saque.dataSaque = dataSaque;
+
+        this.listSaques.push(this.saque);
+
+
+      });
     }).catch((error) => {
       console.log('Erro ao chamar a lista de saques: ', error);
 

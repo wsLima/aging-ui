@@ -1,8 +1,8 @@
 export class PagamentoModel {
 
-    public protocolo: Number;
+    public protocolo: String;
     public nome: String;
-    public valorPagamento: Number;
-    public dataPagamento: Date;
+    public valorPagamento: String;
+    public dataPagamento: String;
 
 }

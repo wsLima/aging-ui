@@ -20,6 +20,7 @@ export class BeneficiariosComponent implements OnInit {
 
   filter = new SearchFilters();
 
+  totalRecords = '';
   cols: any[];
 
 
@@ -31,6 +32,8 @@ export class BeneficiariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.navbarService.setTitle('Beneficiários');
 
     this.cols = [
       { field: 'protocolo', header: 'Protocolo' },
@@ -44,7 +47,7 @@ export class BeneficiariosComponent implements OnInit {
       { field: 'mes', header: 'Meses' }
 
     ];
-    this.navbarService.setTitle('Beneficiários');
+    
 
     this.getListBeneficiarios();
   }
@@ -61,8 +64,8 @@ export class BeneficiariosComponent implements OnInit {
         
         this.beneficiario.protocolo = e.protocolo;
         this.beneficiario.nome = e.nome;
-        this.beneficiario.valorPagamento = 'R$ '+ e.valorPagamento;
-        this.beneficiario.valorSaque = 'R$ '+ e.valorSaque;
+        this.beneficiario.valorPagamento = 'R$ '+ (e.valorPagamento).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        this.beneficiario.valorSaque = 'R$ '+ (e.valorSaque).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         this.beneficiario.dataPagamento = dataPagamento;
         this.beneficiario.dataSaque = dataSaque;
         this.beneficiario.dataBase = dataBase;
@@ -72,8 +75,7 @@ export class BeneficiariosComponent implements OnInit {
         
 
       });
-      // this.listBeneficiarios = data.content;
-      console.log(data);
+      this.totalRecords = data.totalElements;
 
     }).catch((error) => {
       console.log('Erro ao chamar a lista de beneficiários: ', error);
