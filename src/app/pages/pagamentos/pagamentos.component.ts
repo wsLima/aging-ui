@@ -45,6 +45,8 @@ export class PagamentosComponent implements OnInit {
     var format = 'dd/MM/yyyy';
 
     this.pagamentoService.getListPagamentos().then((data) => {
+      console.log(data);
+      
       
      
         data.content.forEach(e => {

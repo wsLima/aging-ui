@@ -55,21 +55,25 @@ export class BeneficiariosComponent implements OnInit {
   private getListBeneficiarios() {
     var format = 'dd/MM/yyyy';
     this.beneficiarioService.getListBeneficiarios().then((data) => {
+      // console.log(data);
+      
       data.content.forEach(e => {
+        
         this.beneficiario = new BeneficiarioModel();
-        let dataPagamento = formatDate(e.dataPagamento, format, 'en-US');
-        let dataSaque = formatDate(e.dataSaque, format, 'en-US');
+        let dataPagamento = e.dataPagamento ? formatDate(e.dataPagamento, format, 'en-US'): '';
+        let dataSaque = e.dataSaque ? formatDate(e.dataSaque, format, 'en-US'): '';
         let dataBase = e.dataBase ? formatDate(e.dataBase, format, 'en-US'): '';
               
         
         this.beneficiario.protocolo = e.protocolo;
         this.beneficiario.nome = e.nome;
-        this.beneficiario.valorPagamento = 'R$ '+ (e.valorPagamento).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-        this.beneficiario.valorSaque = 'R$ '+ (e.valorSaque).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        this.beneficiario.valorPagamento = e.valorPagamento ? 'R$ '+ (e.valorPagamento).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'):'';
+        this.beneficiario.valorSaque =  e.valorSaque ? 'R$ '+ (e.valorSaque).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'):'';
         this.beneficiario.dataPagamento = dataPagamento;
         this.beneficiario.dataSaque = dataSaque;
+        this.beneficiario.saldo = e.saldo ? 'R$ '+ (e.saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'):'R$ 0';
         this.beneficiario.dataBase = dataBase;
-        this.beneficiario.mes = e.mes;
+        this.beneficiario.mes = e.mes? e.mes:'';
         
         this.listBeneficiarios.push(this.beneficiario);
         

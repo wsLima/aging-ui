@@ -13,6 +13,8 @@ export class BeneficiarioService {
 
 
   public getListBeneficiarios() {
+    // console.log(this.routes.getListBeneficiarios());
+    
     return this.request.get(this.routes.getListBeneficiarios()).toPromise();
   }
 

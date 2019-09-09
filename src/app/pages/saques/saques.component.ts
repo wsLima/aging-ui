@@ -3,7 +3,7 @@ import { NavbarComponent } from 'src/app/core/navbar/navbar.component';
 import { NavbarService } from 'src/app/providers/navbar.service';
 import { SaqueModel } from 'src/app/models/saque';
 import { SaqueService } from 'src/app/providers/saque.service';
-import { formatDate } from '@angular/common';
+import { formatDate, DatePipe } from '@angular/common';
 
 // create by wsLima on 2019/08
 // contact: kennedy.wsLima@gmail.com
@@ -17,13 +17,21 @@ export class SaquesComponent implements OnInit {
 
   listSaques = new Array<SaqueModel>();
   saque: SaqueModel;
+
+  totalRecords = '';
   cols: any[];
+  dtInital;
+  dtFinal;
 
 
   constructor(
     private navbarService: NavbarService,
-    private saqueServise: SaqueService
-  ) { }
+    private saqueServise: SaqueService,
+    private datepipe: DatePipe
+  ) {
+    this.getDateInitial();
+    this.getDateInitial();
+  }
 
   ngOnInit() {
     this.navbarService.setTitle('Saques'); //Adicina o titulo da pagina. 
@@ -44,7 +52,7 @@ export class SaquesComponent implements OnInit {
 
     var format = 'dd/MM/yyyy';
 
-    this.saqueServise.getListSaques().then((data) => {
+    this.saqueServise.getListSaques(this.dtInital, this.dtFinal).then((data) => {
 
       data.content.forEach(e => {
         this.saque = new SaqueModel();
@@ -60,11 +68,28 @@ export class SaquesComponent implements OnInit {
 
 
       });
+      this.totalRecords = data.totalElements;
     }).catch((error) => {
       console.log('Erro ao chamar a lista de saques: ', error);
 
     });
 
   }
+
+  getDateInitial() {
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    
+    this.dtInital = firstDay.getTime()
+  }
+
+  getDateFinal() {
+    var date = new Date();
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      
+    this.dtFinal = lastDay.getTime();
+  }
+
+
 
 }

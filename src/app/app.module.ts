@@ -15,6 +15,7 @@ import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 import { SaquesComponent } from './pages/saques/saques.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
     HttpClientModule,
     InputTextModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

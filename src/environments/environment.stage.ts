@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   mode: 'stage',
-  domainSchood: 'https://' // TODO TROCAR PARA O ENDEREÇO DE STAGE;
+  domainAging: 'http://localhost:3000' // TODO TROCAR PARA O ENDEREÇO DE STAGE;
   
 };

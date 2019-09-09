@@ -12,8 +12,8 @@ export class SaqueService {
   private routes = new RoutesModel();
 
 
-  public getListSaques() {
-     return this.request.get(this.routes.getListSaques()).toPromise();
+  public getListSaques(dtInitial, dtFinal) {
+     return this.request.get(this.routes.getListSaques(dtInitial,dtFinal)).toPromise();
   }
   
 }

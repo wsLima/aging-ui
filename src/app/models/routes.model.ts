@@ -8,6 +8,8 @@ export class RoutesModel {
 
     // ROTAS DE BENEFICIARIOS
     public getListBeneficiarios() {
+        console.log(apiConfig.devlocal.EnvironmentConfig.API);
+        
         return apiConfig.devlocal.EnvironmentConfig.API + '/beneficiarios';
     }
 
@@ -17,10 +19,8 @@ export class RoutesModel {
     }
 
     // ROTAS DE SAQUES
-    public getListSaques() {
-        console.log(apiConfig.devlocal.EnvironmentConfig.API);
-        
-        return apiConfig.devlocal.EnvironmentConfig.API + '/saques';
+    public getListSaques(dtInitial, dtFinal) {        
+        return apiConfig.devlocal.EnvironmentConfig.API + '/saques/'+dtInitial+'/'+dtFinal;
     }
 
 
