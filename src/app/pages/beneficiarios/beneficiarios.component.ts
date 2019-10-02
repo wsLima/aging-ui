@@ -76,7 +76,7 @@ export class BeneficiariosComponent implements OnInit {
         this.beneficiario.dataSaque = dataSaque;
         this.beneficiario.saldo = e.saldo ? 'R$ '+ (e.saldo).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'):'R$ 0';
         this.beneficiario.dataBase = dataBase;
-        this.beneficiario.mes = e.mes? e.mes:'';
+        this.beneficiario.mes = e.meses ? e.meses:'0';
         
         this.listBeneficiarios.push(this.beneficiario);
         
