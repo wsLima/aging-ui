@@ -18,14 +18,19 @@ export class PagamentosComponent implements OnInit {
   listPagamentos = new Array<PagamentoModel>();
   pagamento: PagamentoModel;
 
-
   totalRecords = '';
   cols:any[];
+
+  dtInital: any;
+  dtFinal: any;
 
   constructor(
     private navbarService: NavbarService,
     private pagamentoService: PagamentoService
-  ) { }
+  ) { 
+    this.dtInital = this.getFirstDay();
+    this.dtFinal = this.getLastDay();
+  }
 
   ngOnInit() {
     this.navbarService.setTitle('Pagamentos'); // Adciona o titulo da pagina
@@ -44,12 +49,9 @@ export class PagamentosComponent implements OnInit {
 
     var format = 'dd/MM/yyyy';
 
-    this.pagamentoService.getListPagamentos().then((data) => {
-      console.log(data);
-      
-      
-     
-        data.content.forEach(e => {
+    this.pagamentoService.getListPagamentos(this.formatLocalDate(this.dtInital), this.formatLocalDate(this.dtFinal)).then((response) => {
+           
+        response.forEach(e => {
           this.pagamento = new PagamentoModel();
           let dataPagamento = formatDate(e.dataPagamento, format, 'en-US');
           
@@ -64,13 +66,30 @@ export class PagamentosComponent implements OnInit {
           
   
         });
-
-        this.totalRecords = data.totalElements;
         
     }).catch((error) => {
       console.log('Erro ao chamar lista de pagamentos: ', error);
 
     })
+  }
+
+  getFirstDay(){
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    return this.formatLocalDate(firstDay);
+
+  }
+
+  getLastDay(){
+    var date = new Date();
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    return this.formatLocalDate(lastDay);
+
+  }
+
+  formatLocalDate(date){
+    var format = 'yyyy-MM-dd';    
+    return formatDate(date, format, 'en-US')
   }
 
 }

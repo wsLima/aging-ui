@@ -20,8 +20,8 @@ export class SaquesComponent implements OnInit {
 
   totalRecords = '';
   cols: any[];
-  dtInital;
-  dtFinal;
+  dtInital: any;
+  dtFinal: any;
 
 
   constructor(
@@ -29,8 +29,8 @@ export class SaquesComponent implements OnInit {
     private saqueServise: SaqueService,
     private datepipe: DatePipe
   ) {
-    this.getDateInitial();
-    this.getDateInitial();
+    this.dtInital = this.getFirstDay();
+    this.dtFinal = this.getLastDay();
   }
 
   ngOnInit() {
@@ -51,10 +51,11 @@ export class SaquesComponent implements OnInit {
   private getListSaques() { // consulta de saques
 
     var format = 'dd/MM/yyyy';
+    var localDate = 
 
-    this.saqueServise.getListSaques(this.dtInital, this.dtFinal).then((data) => {
+    this.saqueServise.getListSaques(this.formatLocalDate(this.dtInital), this.formatLocalDate(this.dtFinal)).then((response) => {
 
-      data.content.forEach(e => {
+      response.forEach(e => {
         this.saque = new SaqueModel();
         let dataSaque = e.dataSaque ? formatDate(e.dataSaque, format, 'en-US') : '';
 
@@ -68,7 +69,6 @@ export class SaquesComponent implements OnInit {
 
 
       });
-      this.totalRecords = data.totalElements;
     }).catch((error) => {
       console.log('Erro ao chamar a lista de saques: ', error);
 
@@ -76,18 +76,23 @@ export class SaquesComponent implements OnInit {
 
   }
 
-  getDateInitial() {
+  getFirstDay(){
     var date = new Date();
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    
-    this.dtInital = firstDay.getTime()
+    return this.formatLocalDate(firstDay);
+
   }
 
-  getDateFinal() {
+  getLastDay(){
     var date = new Date();
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-      
-    this.dtFinal = lastDay.getTime();
+    return this.formatLocalDate(lastDay);
+
+  }
+
+  formatLocalDate(date){
+    var format = 'yyyy-MM-dd';    
+    return formatDate(date, format, 'en-US')
   }
 
 

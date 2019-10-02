@@ -12,8 +12,8 @@ export class PagamentoService {
   private routes = new RoutesModel();
 
 
-  public getListPagamentos() {
-    return this.request.get(this.routes.getListPagamentos()).toPromise();
+  public getListPagamentos(dtIntial, dtFinal) {
+    return this.request.get(this.routes.getListPagamentos(dtIntial, dtFinal)).toPromise();
   }
 
 }

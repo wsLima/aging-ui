@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { NavbarService } from 'src/app/providers/navbar.service';
 import { BeneficiarioService } from 'src/app/providers/beneficiario.service';
 import { BeneficiarioModel } from 'src/app/models/beneficiario';
-import { SearchFilters } from 'src/app/utils/searchFilters';
 import { formatDate } from "@angular/common";
 
 // create by wsLima on 2019/08
@@ -18,10 +17,11 @@ export class BeneficiariosComponent implements OnInit {
   listBeneficiarios = new Array<BeneficiarioModel>();
   beneficiario: BeneficiarioModel;
 
-  filter = new SearchFilters();
-
   totalRecords = '';
   cols: any[];
+
+  dtInital: any;
+  dtFinal: any;
 
 
 
@@ -29,7 +29,10 @@ export class BeneficiariosComponent implements OnInit {
   constructor(
     private navbarService: NavbarService,
     private beneficiarioService: BeneficiarioService
-  ) { }
+  ) { 
+    this.dtInital = this.getFirstDay();
+    this.dtFinal = this.getLastDay();
+  }
 
   ngOnInit() {
 
@@ -54,10 +57,10 @@ export class BeneficiariosComponent implements OnInit {
 
   private getListBeneficiarios() {
     var format = 'dd/MM/yyyy';
-    this.beneficiarioService.getListBeneficiarios().then((data) => {
+    this.beneficiarioService.getListBeneficiarios(this.formatLocalDate(this.dtInital), this.formatLocalDate(this.dtFinal)).then((response) => {
       // console.log(data);
       
-      data.content.forEach(e => {
+      response.forEach(e => {
         
         this.beneficiario = new BeneficiarioModel();
         let dataPagamento = e.dataPagamento ? formatDate(e.dataPagamento, format, 'en-US'): '';
@@ -79,12 +82,30 @@ export class BeneficiariosComponent implements OnInit {
         
 
       });
-      this.totalRecords = data.totalElements;
 
     }).catch((error) => {
       console.log('Erro ao chamar a lista de beneficiários: ', error);
 
     })
+  }
+
+  getFirstDay(){
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    return this.formatLocalDate(firstDay);
+
+  }
+
+  getLastDay(){
+    var date = new Date();
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    return this.formatLocalDate(lastDay);
+
+  }
+
+  formatLocalDate(date){
+    var format = 'yyyy-MM-dd';    
+    return formatDate(date, format, 'en-US')
   }
 
 
