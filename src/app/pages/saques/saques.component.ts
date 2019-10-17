@@ -20,6 +20,9 @@ export class SaquesComponent implements OnInit {
 
   totalRecords = '';
   cols: any[];
+  dataInital: Date;
+  dataFinal: Date;
+
   dtInital: any;
   dtFinal: any;
 
@@ -48,10 +51,19 @@ export class SaquesComponent implements OnInit {
     this.getListSaques();
   }
 
+  buscar(){
+
+    this.dtInital = this.formatLocalDate(this.dataInital);
+    this.dtFinal = this.formatLocalDate(this.dataFinal);
+
+    this.getListSaques();
+    
+  }
+
   private getListSaques() { // consulta de saques
 
     var format = 'dd/MM/yyyy';
-    var localDate = 
+    this.listSaques = [];
 
     this.saqueServise.getListSaques(this.formatLocalDate(this.dtInital), this.formatLocalDate(this.dtFinal)).then((response) => {
 
@@ -76,22 +88,22 @@ export class SaquesComponent implements OnInit {
 
   }
 
-  getFirstDay(){
+  getFirstDay() {
     var date = new Date();
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     return this.formatLocalDate(firstDay);
 
   }
 
-  getLastDay(){
+  getLastDay() {
     var date = new Date();
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     return this.formatLocalDate(lastDay);
 
   }
 
-  formatLocalDate(date){
-    var format = 'yyyy-MM-dd';    
+  formatLocalDate(date) {
+    var format = 'yyyy-MM-dd';
     return formatDate(date, format, 'en-US')
   }
 

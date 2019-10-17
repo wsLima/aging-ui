@@ -7,10 +7,8 @@ export class RoutesModel {
     }
 
     // ROTAS DE BENEFICIARIOS
-    public getListBeneficiarios(dtInitial, dtFinal) {
-        console.log(apiConfig.devlocal.EnvironmentConfig.API);
-        
-        return apiConfig.devlocal.EnvironmentConfig.API + '/beneficiarios?dtInitial='+dtInitial+'&dtFinal='+dtFinal;
+    public getListBeneficiarios() {        
+        return apiConfig.devlocal.EnvironmentConfig.API + '/beneficiarios';
     }
 
     // ROTAS DE PAGAMANTO

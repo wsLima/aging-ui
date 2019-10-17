@@ -1,20 +1,27 @@
 <div class="main-content">
     <div class="main-content-search">
-        <!-- <div>
-            <button pButton type="button" icon="pi pi-download" iconPos="right" label="Exportar"></button>
-        </div> -->
+        <div>
+            <button type="button" pButton icon="pi pi-download" iconPos="left" label="Exportar"
+                (click)="dt.exportCSV()"></button>
+        </div>
         <div class="ui-inputgroup">
-            <input type="text" pInputText placeholder="Pesquisar">
-            <button pButton type="button" icon="pi pi-search" class="ui-button-warn"></button>
+            <div style="margin-right: 5px !important ;">
+                <p-calendar [(ngModel)]="dataInital" name="dtInitial" dateFormat="dd/mm/yy"
+                    placeholder="De: DD/MM/YYYY"></p-calendar>
+            </div>
+
+            <div style="margin-right: 5px !important ;">
+                <p-calendar [(ngModel)]="dataFinal" name="dtInitial" dateFormat="dd/mm/yy"
+                    placeholder="Ate: DD/MM/YYYY"></p-calendar>
+            </div>
+
+            <button pButton type="button" icon="pi pi-search" label="Buscar" class="ui-button-warn"
+                (click)="buscar()"></button>
         </div>
     </div>
     <div class="main-datatable">
         <p-table #dt id="customers" [columns]="cols" [value]="listPagamentos" [paginator]="true" [rows]="20">
             <ng-template pTemplate="caption">
-                <div class="ui-helper-clearfix" style="text-align: left;margin:4px 4px 0 0">
-                    <button type="button" pButton icon="pi pi-download" iconPos="left" label="Exportar"
-                        (click)="dt.exportCSV()"></button>
-                </div>
 
                 <div style="text-align: right">
                     <i class="pi pi-search" style="margin:4px 4px 0 0"></i>

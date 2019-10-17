@@ -20,6 +20,8 @@ export class PagamentosComponent implements OnInit {
 
   totalRecords = '';
   cols:any[];
+  dataInital: Date;
+  dataFinal: Date;
 
   dtInital: any;
   dtFinal: any;
@@ -45,7 +47,18 @@ export class PagamentosComponent implements OnInit {
     this.getListPagamentos();
   }
 
+  buscar(){
+
+    this.dtInital = this.formatLocalDate(this.dataInital);
+    this.dtFinal = this.formatLocalDate(this.dataFinal);
+
+    this.getListPagamentos();
+    
+  }
+
   private getListPagamentos() { // consulta lista de pagamentos
+
+    this.listPagamentos = [];
 
     var format = 'dd/MM/yyyy';
 

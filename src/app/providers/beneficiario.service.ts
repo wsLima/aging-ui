@@ -12,8 +12,8 @@ export class BeneficiarioService {
   private routes = new RoutesModel();
 
 
-  public getListBeneficiarios(dtInitial, dtFinal) {    
-    return this.request.get(this.routes.getListBeneficiarios(dtInitial, dtFinal)).toPromise();
+  public getListBeneficiarios() {    
+    return this.request.get(this.routes.getListBeneficiarios()).toPromise();
   }
 
 }

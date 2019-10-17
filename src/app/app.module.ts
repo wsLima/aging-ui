@@ -15,6 +15,7 @@ import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 import { SaquesComponent } from './pages/saques/saques.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
+import {CalendarModule} from 'primeng/calendar';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -36,6 +37,7 @@ import { DatePipe } from '@angular/common';
     PaginatorModule,
     HttpClientModule,
     InputTextModule,
+    CalendarModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

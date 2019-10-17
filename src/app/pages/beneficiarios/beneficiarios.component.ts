@@ -20,18 +20,12 @@ export class BeneficiariosComponent implements OnInit {
   totalRecords = '';
   cols: any[];
 
-  dtInital: any;
-  dtFinal: any;
-
-
-
 
   constructor(
     private navbarService: NavbarService,
     private beneficiarioService: BeneficiarioService
   ) { 
-    this.dtInital = this.getFirstDay();
-    this.dtFinal = this.getLastDay();
+    
   }
 
   ngOnInit() {
@@ -57,7 +51,7 @@ export class BeneficiariosComponent implements OnInit {
 
   private getListBeneficiarios() {
     var format = 'dd/MM/yyyy';
-    this.beneficiarioService.getListBeneficiarios(this.formatLocalDate(this.dtInital), this.formatLocalDate(this.dtFinal)).then((response) => {
+    this.beneficiarioService.getListBeneficiarios().then((response) => {
       // console.log(data);
       
       response.forEach(e => {
@@ -89,24 +83,6 @@ export class BeneficiariosComponent implements OnInit {
     })
   }
 
-  getFirstDay(){
-    var date = new Date();
-    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    return this.formatLocalDate(firstDay);
-
-  }
-
-  getLastDay(){
-    var date = new Date();
-    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    return this.formatLocalDate(lastDay);
-
-  }
-
-  formatLocalDate(date){
-    var format = 'yyyy-MM-dd';    
-    return formatDate(date, format, 'en-US')
-  }
 
 
 }
